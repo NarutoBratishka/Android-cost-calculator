@@ -14,7 +14,7 @@
         android:layout_alignParentLeft="true"
         android:layout_alignParentTop="true"
         android:layout_marginBottom="16dp"
-        android:text="@string/quantity_text"
+        android:text="@string/quantity_word"
         android:textAllCaps="true"
         android:textColor="@android:color/tertiary_text_dark"
         android:textSize="16sp" />
@@ -25,19 +25,43 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/quantity_word"
         android:layout_marginBottom="16dp"
-        android:text="@string/result_text"
+        android:text="@string/quantity_text"
         android:textColor="@color/black"
         android:textSize="16sp" />
+
+    <TextView
+        android:id="@+id/price_word"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@id/quantity_text_view"
+        android:layout_marginBottom="16dp"
+        android:text="@string/price_word"
+        android:textAllCaps="true"
+        android:textColor="@android:color/tertiary_text_dark"
+        android:textSize="16sp"
+        android:onClick="submitOrder"/>
+
+    <TextView
+        android:id="@+id/price_text_view"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/price_word"
+        android:layout_marginBottom="16dp"
+        android:text="@string/price_text"
+        android:textColor="@color/black"
+        android:textSize="16sp"/>
 
     <Button
         android:id="@+id/order_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/quantity_text_view"
+        android:layout_below="@id/price_text_view"
         android:backgroundTint="@android:color/tertiary_text_dark"
         android:text="@string/button_text"
         android:textColor="@android:color/black"
-        android:textSize="16sp" />
+        android:textSize="16sp"
+        android:onClick="submitOrder"/>
 
 
 </RelativeLayout>
