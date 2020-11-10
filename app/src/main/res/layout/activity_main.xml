@@ -1,40 +1,43 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity"
-    android:orientation="vertical"
     android:background="@android:color/darker_gray"
-    android:padding="8dp">
+    android:padding="16dp"
+    tools:context=".MainActivity">
 
     <TextView
+        android:id="@+id/quantity_word"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginBottom="16dp"
         android:text="@string/quantity_text"
-        android:textAppearance="@style/TextAppearance.AppCompat.Large"
-        android:layout_margin="8dp"
         android:textAllCaps="true"
-        android:textColor="@android:color/tertiary_text_dark"/>
+        android:textColor="@android:color/tertiary_text_dark"
+        android:textSize="16sp" />
 
     <TextView
-        android:id="@+id/summary"
+        android:id="@+id/quantity_text_view"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_below="@id/quantity_word"
+        android:layout_marginBottom="16dp"
         android:text="@string/result_text"
-        android:textAppearance="@style/TextAppearance.AppCompat.Large"
-        android:layout_margin="8dp"/>
+        android:textColor="@color/black"
+        android:textSize="16sp" />
 
     <Button
         android:id="@+id/order_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_below="@id/quantity_text_view"
+        android:backgroundTint="@android:color/tertiary_text_dark"
         android:text="@string/button_text"
         android:textColor="@android:color/black"
-        android:backgroundTint="@android:color/tertiary_text_dark"
-        android:layout_marginLeft="8sp"/>
+        android:textSize="16sp" />
 
 
-</LinearLayout>
+</RelativeLayout>
