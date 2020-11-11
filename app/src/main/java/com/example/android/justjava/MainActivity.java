@@ -4,14 +4,13 @@ import android.os.Bundle;
 import androidx.appcompat.app.AppCompatActivity;
 import android.view.View;
 import android.widget.TextView;
-
-import java.text.NumberFormat;
 //import com.example.android.justjava.R;
 
 
 
 
 public class MainActivity extends AppCompatActivity {
+    int coffeeCount = 2;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -24,7 +23,6 @@ public class MainActivity extends AppCompatActivity {
      This method is called when the order button is clicked.
      */
     public void submitOrder(View view) {
-        int coffeeCount = 2;
         display(coffeeCount);
         displayPrice(coffeeCount * 5);
     }
@@ -47,11 +45,15 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void increment(View view) {
+        coffeeCount++;
         TextView quantityTextView = (TextView) findViewById(R.id.quantity_text_view);
-        quantityTextView.setText("3");
+        quantityTextView.setText("" + coffeeCount);
     }
 
     public void decrement(View view) {
-        display(1);
+        if (coffeeCount != 0) {
+            coffeeCount--;
+        }
+        display(coffeeCount);
     }
 }
