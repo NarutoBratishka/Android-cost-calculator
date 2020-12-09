@@ -4,6 +4,8 @@ import android.os.Bundle;
 import androidx.appcompat.app.AppCompatActivity;
 import android.view.View;
 import android.widget.TextView;
+
+import java.text.NumberFormat;
 //import com.example.android.justjava.R;
 
 
@@ -23,8 +25,10 @@ public class MainActivity extends AppCompatActivity {
      This method is called when the order button is clicked.
      */
     public void submitOrder(View view) {
-        display(coffeeCount);
-        displayPrice(coffeeCount * 5);
+        /*display(coffeeCount);
+        displayPrice(coffeeCount * 5);*/
+        String priceMessage = "Total: " + NumberFormat.getCurrencyInstance().format(coffeeCount * 75) + "\nThank you!";
+        displayMessage(priceMessage);
     }
     /**
 
@@ -42,6 +46,11 @@ public class MainActivity extends AppCompatActivity {
         TextView priceTextView = (TextView) findViewById(R.id.price_text_view);
 //        priceTextView.setText(NumberFormat.getCurrencyInstance().format(number));
         priceTextView.setText("$" + number);
+    }
+
+    private void displayMessage(String message) {
+        TextView order = (TextView) findViewById(R.id.price_text_view);
+        order.setText(message);
     }
 
     public void increment(View view) {
