@@ -21,26 +21,38 @@ public class MainActivity extends AppCompatActivity {
     }
 
     /**
-
      This method is called when the order button is clicked.
      */
     public void submitOrder(View view) {
-        /*display(coffeeCount);
-        displayPrice(coffeeCount * 5);*/
-        String priceMessage = "Total: " + NumberFormat.getCurrencyInstance().format(coffeeCount * 75) + "\nThank you!";
-        displayMessage(priceMessage);
+        if (coffeeCount == 0) {
+            displayPrice(0);
+        } else {
+//            String priceMessage = "Total: " + NumberFormat.getCurrencyInstance().format(coffeeCount * 75) + "\nThank you!";
+            String priceMessage = createOrderSummary(coffeeCount);
+            displayMessage(priceMessage);
+        }
     }
-    /**
 
-     This method displays the given quantity value on the screen.
+    private String createOrderSummary(int quantity) {
+        String name = "Visitor";
+        int oneCupCost = 25;
+
+        return "Name: " + name + " \n" +
+                "Quantity: " + quantity + "\n" +
+                "Total: " + quantity * oneCupCost + "$\n" +
+                "Thank you!";
+    }
+
+    /**
+     * This method displays the given quantity value on the screen.
      */
-    private void display(int number) {
+    private void displayQuantity(int number) {
         TextView quantityTextView = (TextView) findViewById(R.id.quantity_text_view);
         quantityTextView.setText("" + number);
     }
 
     /**
-     * This method displays the given price on the screen.
+     * Just for 0 quantity
      */
     private void displayPrice(int number) {
         TextView priceTextView = (TextView) findViewById(R.id.price_text_view);
@@ -63,6 +75,6 @@ public class MainActivity extends AppCompatActivity {
         if (coffeeCount != 0) {
             coffeeCount--;
         }
-        display(coffeeCount);
+        displayQuantity(coffeeCount);
     }
 }
