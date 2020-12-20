@@ -14,6 +14,7 @@
 
 
     <EditText
+        android:id="@+id/name_id"
         android:hint="@string/name"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -31,10 +32,17 @@
     <CheckBox
         android:id="@+id/whipped_cream_id"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="16dp"
+        android:layout_height="40dp"
         android:text="@string/whipped_cream"
         android:textSize="16sp"/>
+
+    <CheckBox
+        android:id="@+id/chocolate_id"
+        android:layout_width="wrap_content"
+        android:layout_height="40dp"
+        android:layout_marginBottom="16dp"
+        android:text="@string/chocolate"
+        android:textSize="16sp" />
 
     <LinearLayout
         android:layout_width="wrap_content"
