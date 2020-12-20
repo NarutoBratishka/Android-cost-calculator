@@ -3,9 +3,8 @@ package com.example.android.justjava;
 import android.os.Bundle;
 import androidx.appcompat.app.AppCompatActivity;
 import android.view.View;
+import android.widget.CheckBox;
 import android.widget.TextView;
-
-import java.text.NumberFormat;
 //import com.example.android.justjava.R;
 
 
@@ -13,11 +12,13 @@ import java.text.NumberFormat;
 
 public class MainActivity extends AppCompatActivity {
     int coffeeCount = 2;
+    CheckBox hasWhippedCream;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        hasWhippedCream = findViewById(R.id.whipped_cream_id);
     }
 
     /**
@@ -36,10 +37,12 @@ public class MainActivity extends AppCompatActivity {
     private String createOrderSummary(int quantity) {
         String name = "Visitor";
         int oneCupCost = 25;
+        int additives = hasWhippedCream.isChecked()? 15 : 0;
 
         return "Name: " + name + " \n" +
+                "Add Whipped Cream? " + (hasWhippedCream.isChecked()? "true": "false") + "\n" +
                 "Quantity: " + quantity + "\n" +
-                "Total: " + quantity * oneCupCost + "$\n" +
+                "Total: " + (quantity * oneCupCost + additives) + "$\n" +
                 "Thank you!";
     }
 
@@ -57,7 +60,7 @@ public class MainActivity extends AppCompatActivity {
     private void displayPrice(int number) {
         TextView priceTextView = (TextView) findViewById(R.id.price_text_view);
 //        priceTextView.setText(NumberFormat.getCurrencyInstance().format(number));
-        priceTextView.setText("$" + number);
+        priceTextView.setText(number + "$");
     }
 
     private void displayMessage(String message) {

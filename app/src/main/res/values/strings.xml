@@ -7,4 +7,6 @@
     <string name="price_text">0$</string>
     <string name="minus">-</string>
     <string name="plus_button">+</string>
+    <string name="toppings">toppings</string>
+    <string name="whipped_cream">Whipped Cream</string>
 </resources>
