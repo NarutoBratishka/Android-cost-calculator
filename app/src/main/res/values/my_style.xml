@@ -2,6 +2,6 @@
 <resources>
 
     <style name="my_button_style">
-        <item name="colorPrimary">@android:color/tertiary_text_dark</item>
+        <item name="colorPrimary">@android:color/darker_gray</item>
     </style>
 </resources>

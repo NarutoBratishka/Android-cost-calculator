@@ -1,5 +1,7 @@
 package com.example.android.justjava;
 
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import androidx.appcompat.app.AppCompatActivity;
 import android.view.View;
@@ -31,6 +33,7 @@ public class MainActivity extends AppCompatActivity {
      This method is called when the order button is clicked.
      */
     public void submitOrder(View view) {
+/*
         if (coffeeCount == 0) {
             displayPrice(0);
         } else {
@@ -38,20 +41,36 @@ public class MainActivity extends AppCompatActivity {
             String priceMessage = createOrderSummary(coffeeCount);
             displayMessage(priceMessage);
         }
-    }
-
-    private String createOrderSummary(int quantity) {
-        String name = "Visitor";
-        int oneCupCost = 5;
+*/
         int additives = (hasWhippedCream.isChecked()? 1 : 0) + (hasChocolate.isChecked()? 2 : 0);
-
-        return "Name: " + (nameId.getText().toString().equals("")? name : nameId.getText().toString()) + " \n" +
+        String orderText = "Name: " + (nameId.getText().toString().equals("")? "Visitor" : nameId.getText().toString()) + " \n" +
                 "Add Whipped Cream? " + (hasWhippedCream.isChecked()? "true": "false") + "\n" +
                 "Add Chocolate? " + (hasChocolate.isChecked()? "true": "false") + "\n" +
-                "Quantity: " + quantity + "\n" +
-                "Total: " + quantity * (oneCupCost + additives) + "$\n" +
+                "Quantity: " + coffeeCount + "\n" +
+                "Total: " + coffeeCount * (5 + additives) + "$\n" +
                 "Thank you!";
+        Intent intent = new Intent(Intent.ACTION_SEND);
+        intent.setType("text/plain");
+        intent.putExtra(Intent.EXTRA_EMAIL, new String[]{"some_cafe@gmail.ru"});
+        intent.putExtra(Intent.EXTRA_SUBJECT, "JustJava order to Barista");
+        intent.putExtra(Intent.EXTRA_TEXT, orderText);
+        if (intent.resolveActivity(getPackageManager()) != null) {
+            startActivity(intent);
+        }
     }
+
+//    private String createOrderSummary(int quantity) {
+//        String name = "Visitor";
+//        int oneCupCost = 5;
+//        int additives = (hasWhippedCream.isChecked()? 1 : 0) + (hasChocolate.isChecked()? 2 : 0);
+//
+//        return "Name: " + (nameId.getText().toString().equals("")? name : nameId.getText().toString()) + " \n" +
+//                "Add Whipped Cream? " + (hasWhippedCream.isChecked()? "true": "false") + "\n" +
+//                "Add Chocolate? " + (hasChocolate.isChecked()? "true": "false") + "\n" +
+//                "Quantity: " + quantity + "\n" +
+//                "Total: " + quantity * (oneCupCost + additives) + "$\n" +
+//                "Thank you!";
+//    }
 
     /**
      * This method displays the given quantity value on the screen.
@@ -63,7 +82,7 @@ public class MainActivity extends AppCompatActivity {
 
     /**
      * Just for 0 quantity
-     */
+     *//*
     private void displayPrice(int number) {
         TextView priceTextView = (TextView) findViewById(R.id.price_text_view);
 //        priceTextView.setText(NumberFormat.getCurrencyInstance().format(number));
@@ -73,7 +92,7 @@ public class MainActivity extends AppCompatActivity {
     private void displayMessage(String message) {
         TextView order = (TextView) findViewById(R.id.price_text_view);
         order.setText(message);
-    }
+    }*/
 
     public void increment(View view) {
         if (coffeeCount < 99) {
