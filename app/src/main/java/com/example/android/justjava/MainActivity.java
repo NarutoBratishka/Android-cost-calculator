@@ -42,14 +42,14 @@ public class MainActivity extends AppCompatActivity {
 
     private String createOrderSummary(int quantity) {
         String name = "Visitor";
-        int oneCupCost = 25;
-        int additives = (hasWhippedCream.isChecked()? 15 : 0) + (hasChocolate.isChecked()? 19: 0);
+        int oneCupCost = 5;
+        int additives = (hasWhippedCream.isChecked()? 1 : 0) + (hasChocolate.isChecked()? 2 : 0);
 
-        return "Name: " + (nameId.getText().toString().equals("")? "Visitor": nameId.getText().toString()) + " \n" +
+        return "Name: " + (nameId.getText().toString().equals("")? name : nameId.getText().toString()) + " \n" +
                 "Add Whipped Cream? " + (hasWhippedCream.isChecked()? "true": "false") + "\n" +
                 "Add Chocolate? " + (hasChocolate.isChecked()? "true": "false") + "\n" +
                 "Quantity: " + quantity + "\n" +
-                "Total: " + (quantity * oneCupCost + additives) + "$\n" +
+                "Total: " + quantity * (oneCupCost + additives) + "$\n" +
                 "Thank you!";
     }
 
@@ -76,13 +76,15 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void increment(View view) {
-        coffeeCount++;
-        TextView quantityTextView = (TextView) findViewById(R.id.quantity_text_view);
-        quantityTextView.setText("" + coffeeCount);
+        if (coffeeCount < 99) {
+            coffeeCount++;
+            TextView quantityTextView = (TextView) findViewById(R.id.quantity_text_view);
+            quantityTextView.setText("" + coffeeCount);
+        }
     }
 
     public void decrement(View view) {
-        if (coffeeCount != 0) {
+        if (coffeeCount > 1) {
             coffeeCount--;
         }
         displayQuantity(coffeeCount);
