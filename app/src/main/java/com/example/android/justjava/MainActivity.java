@@ -8,6 +8,7 @@ import android.view.View;
 import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 //import com.example.android.justjava.R;
 
 
@@ -105,6 +106,8 @@ public class MainActivity extends AppCompatActivity {
     public void decrement(View view) {
         if (coffeeCount > 1) {
             coffeeCount--;
+        } else {
+            Toast.makeText(getBaseContext(), "Cannot order less then 1 cup of coffee", Toast.LENGTH_SHORT).show();
         }
         displayQuantity(coffeeCount);
     }
