@@ -1,5 +1,6 @@
 package com.example.android.justjava;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
@@ -9,7 +10,6 @@ import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
-//import com.example.android.justjava.R;
 
 
 
@@ -33,45 +33,28 @@ public class MainActivity extends AppCompatActivity {
     /**
      This method is called when the order button is clicked.
      */
+    @SuppressLint("QueryPermissionsNeeded")
     public void submitOrder(View view) {
-/*
-        if (coffeeCount == 0) {
-            displayPrice(0);
-        } else {
-//            String priceMessage = "Total: " + NumberFormat.getCurrencyInstance().format(coffeeCount * 75) + "\nThank you!";
-            String priceMessage = createOrderSummary(coffeeCount);
-            displayMessage(priceMessage);
-        }
-*/
+
         int additives = (hasWhippedCream.isChecked()? 1 : 0) + (hasChocolate.isChecked()? 2 : 0);
-        String orderText = "Name: " + (nameId.getText().toString().equals("")? "Visitor" : nameId.getText().toString()) + " \n" +
-                "Add Whipped Cream? " + (hasWhippedCream.isChecked()? "true": "false") + "\n" +
-                "Add Chocolate? " + (hasChocolate.isChecked()? "true": "false") + "\n" +
-                "Quantity: " + coffeeCount + "\n" +
-                "Total: " + coffeeCount * (5 + additives) + "$\n" +
-                "Thank you!";
+        String namePattern = nameId.getText().toString().equals("")? getString(R.string.visitor) : nameId.getText().toString();
+        String orderText = getString(R.string.order_summary_name, namePattern) + " \n" +
+                getString(R.string.additives,
+                        hasWhippedCream.isChecked()? "✓": "✗",
+                        hasChocolate.isChecked()? "✓": "✗") + "\n" +
+                getString(R.string.quantity_word) + " " + coffeeCount + "\n" +
+                getString(R.string.total) + " " + coffeeCount * (5 + additives) + "$\n" +
+                getString(R.string.thanks);
+
         Intent intent = new Intent(Intent.ACTION_SEND);
         intent.setType("text/plain");
         intent.putExtra(Intent.EXTRA_EMAIL, new String[]{"some_cafe@gmail.ru"});
-        intent.putExtra(Intent.EXTRA_SUBJECT, "JustJava order to Barista");
+        intent.putExtra(Intent.EXTRA_SUBJECT, getResources().getString(R.string.subject_of_mail));
         intent.putExtra(Intent.EXTRA_TEXT, orderText);
         if (intent.resolveActivity(getPackageManager()) != null) {
             startActivity(intent);
         }
     }
-
-//    private String createOrderSummary(int quantity) {
-//        String name = "Visitor";
-//        int oneCupCost = 5;
-//        int additives = (hasWhippedCream.isChecked()? 1 : 0) + (hasChocolate.isChecked()? 2 : 0);
-//
-//        return "Name: " + (nameId.getText().toString().equals("")? name : nameId.getText().toString()) + " \n" +
-//                "Add Whipped Cream? " + (hasWhippedCream.isChecked()? "true": "false") + "\n" +
-//                "Add Chocolate? " + (hasChocolate.isChecked()? "true": "false") + "\n" +
-//                "Quantity: " + quantity + "\n" +
-//                "Total: " + quantity * (oneCupCost + additives) + "$\n" +
-//                "Thank you!";
-//    }
 
     /**
      * This method displays the given quantity value on the screen.
@@ -80,20 +63,6 @@ public class MainActivity extends AppCompatActivity {
         TextView quantityTextView = (TextView) findViewById(R.id.quantity_text_view);
         quantityTextView.setText("" + number);
     }
-
-    /**
-     * Just for 0 quantity
-     *//*
-    private void displayPrice(int number) {
-        TextView priceTextView = (TextView) findViewById(R.id.price_text_view);
-//        priceTextView.setText(NumberFormat.getCurrencyInstance().format(number));
-        priceTextView.setText(number + "$");
-    }
-
-    private void displayMessage(String message) {
-        TextView order = (TextView) findViewById(R.id.price_text_view);
-        order.setText(message);
-    }*/
 
     public void increment(View view) {
         if (coffeeCount < 99) {
@@ -107,7 +76,7 @@ public class MainActivity extends AppCompatActivity {
         if (coffeeCount > 1) {
             coffeeCount--;
         } else {
-            Toast.makeText(getBaseContext(), "Cannot order less then 1 cup of coffee", Toast.LENGTH_SHORT).show();
+            Toast.makeText(getBaseContext(), getString(R.string.caution), Toast.LENGTH_SHORT).show();
         }
         displayQuantity(coffeeCount);
     }

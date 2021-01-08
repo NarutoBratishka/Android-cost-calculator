@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+    <string name="app_name">Прост Java</string>
+    <string name="quantity_word">Количество </string>
+    <string name="quantity_text">2</string>
+    <string name="button_text">Заказать</string>
+    <string name="order_summary">Заказ</string>
+    <string name="order_summary_name">Имя: <xliff:g example="Аня" id="name">%s</xliff:g></string>
+    <string name="price_text">0$</string>
+    <string name="minus">-</string>
+    <string name="plus_button">+</string>
+    <string name="toppings">добавки</string>
+    <string name="visitor">посетитель</string>
+    <string name="additives">Взбитые сливки <xliff:g example="V" id="cream">%s</xliff:g>\nШоколад <xliff:g example="V" id="choco">%s</xliff:g></string>
+    <string name="name">Имя</string>
+    <string name="chocolate">Шоколад</string>
+    <string name="whipped_cream">Взбитые сливки</string>
+    <string name="total">К оплате: </string>
+    <string name="caution">Нельзя заказать меньше одной чашки</string>
+    <string name="subject_of_mail">Заказ для бариста</string>
+    <string name="thanks">\nСпасибо!</string>
+</resources>
