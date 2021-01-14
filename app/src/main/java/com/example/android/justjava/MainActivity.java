@@ -28,6 +28,7 @@ public class MainActivity extends AppCompatActivity {
         hasChocolate = findViewById(R.id.chocolate_id);
         nameId = findViewById(R.id.name_id);
 
+
     }
 
     /**
